@@ -16,8 +16,7 @@ Life Dashboard is a clean and interactive web application to help you manage you
 - JavaScript
 
 ## 🎬 Demo
-You can try the live app here: [Life Dashboard Live Link](https://yourusername.github.io/life-dashboard/)
-
+You can try the live app here: [Life Dashboard Live Link](https://manaswichow.github.io/LifeDashboard/)
 ## 📂 Installation / Running Locally
 1. Clone or download the repository
 2. Open `index.html` in your browser
