@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>LifeDashboard - Manus Theme</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="app">
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="logo">LD</div>
+                <div class="brand-text">LifeDashboard</div>
+            </div>
+            <nav>
+                <button class="nav-btn active" data-view="dashboard">Dashboard</button>
+                <button class="nav-btn" data-view="notes">Notes</button>
+                <button class="nav-btn" data-view="tasks">Tasks</button>
+                <button class="nav-btn" data-view="budget">Budget</button>
+                <button class="nav-btn" data-view="habits">Habits</button>
+                <button class="nav-btn" data-view="goals">Goals</button>
+                <button class="nav-btn" data-view="calendar">Calendar</button>
+            </nav>
+            <div class="sidebar-footer">
+                <small>Solo • LocalStorage</small>
+            </div>
+        </aside>
+
+        <main class="main">
+            <header class="topbar">
+                <div class="search">
+                    <input id="globalSearch" placeholder="Search notes, tasks, goals..." />
+                </div>
+                <div class="profile">
+                    <div class="user">👋 You</div>
+                </div>
+            </header>
+
+            <section class="views">
+                <!-- Dashboard View -->
+                <section id="dashboard" class="view active">
+                    <h2>Dashboard</h2>
+                    <div class="cards-grid">
+                        <div class="card">
+                            <h3>Quick Notes</h3>
+                            <div id="dashboardNotes" class="mini-list"></div>
+                            <button class="btn small" data-view="notes">Open Notes</button>
+                        </div>
+                        <div class="card">
+                            <h3>Today's Tasks</h3>
+                            <div id="dashboardTasks" class="mini-list"></div>
+                            <button class="btn small" data-view="tasks">Open Tasks</button>
+                        </div>
+                        <div class="card">
+                            <h3>Balance</h3>
+                            <div id="dashboardBalance" class="balance">₹0</div>
+                            <button class="btn small" data-view="budget">Open Budget</button>
+                        </div>
+                        <div class="card">
+                            <h3>Habits</h3>
+                            <div id="dashboardHabits" class="mini-list"></div>
+                            <button class="btn small" data-view="habits">Open Habits</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Notes View -->
+                <section id="notes" class="view">
+                    <h2>Notes</h2>
+                    <div class="panel">
+                        <div class="left-col">
+                            <textarea id="noteInput" placeholder="Write a note..."></textarea>
+                            <div class="form-row">
+                                <input id="noteTag" placeholder="Tag (optional)" />
+                                <button id="addNoteBtn" class="btn">Add Note</button>
+                            </div>
+                        </div>
+                        <div class="right-col">
+                            <div id="notesList" class="list"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Tasks View -->
+                <section id="tasks" class="view">
+                    <h2>Tasks</h2>
+                    <div class="panel">
+                        <div class="left-col">
+                            <input id="taskTitle" placeholder="Task title" />
+                            <input id="taskDate" type="date" />
+                            <div class="form-row">
+                                <button id="addTaskBtn" class="btn">Add Task</button>
+                                <select id="taskFilter">
+                                    <option value="all">All</option>
+                                    <option value="pending">Pending</option>
+                                    <option value="completed">Completed</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="right-col">
+                            <div id="tasksList" class="list"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Budget View -->
+                <section id="budget" class="view">
+                    <h2>Budget</h2>
+                    <div class="panel">
+                        <div class="left-col">
+                            <input id="entryTitle" placeholder="Description" />
+                            <input id="entryAmount" type="number" placeholder="Amount" />
+                            <select id="entryType">
+                                <option value="expense">Expense</option>
+                                <option value="income">Income</option>
+                            </select>
+                            <div class="form-row">
+                                <button id="addEntryBtn" class="btn">Add Entry</button>
+                                <button id="clearBudget" class="btn ghost">Clear</button>
+                            </div>
+                        </div>
+                        <div class="right-col">
+                            <div class="card">
+                                <h3>Balance</h3>
+                                <div id="balance" class="balance">₹0</div>
+                            </div>
+                            <div id="entriesList" class="list"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Habits View -->
+                <section id="habits" class="view">
+                    <h2>Habits</h2>
+                    <div class="panel">
+                        <div class="left-col">
+                            <input id="habitTitle" placeholder="Habit name (e.g., Read 20 min)" />
+                            <button id="addHabitBtn" class="btn">Add Habit</button>
+                        </div>
+                        <div class="right-col">
+                            <div id="habitsList" class="list"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Goals View -->
+                <section id="goals" class="view">
+                    <h2>Goals</h2>
+                    <div class="panel">
+                        <div class="left-col">
+                            <input id="goalTitle" placeholder="Goal title" />
+                            <input id="goalTarget" type="number" placeholder="Target (e.g., 30 days)" />
+                            <div class="form-row">
+                                <button id="addGoalBtn" class="btn">Add Goal</button>
+                            </div>
+                        </div>
+                        <div class="right-col">
+                            <div id="goalsList" class="list"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Calendar View -->
+                <section id="calendar" class="view">
+                    <h2>Calendar</h2>
+                    <div class="calendar-panel">
+                        <div class="cal-header">
+                            <button id="prevMonth" class="btn small ghost">&lt;</button>
+                            <div id="calMonth" class="cal-month"></div>
+                            <button id="nextMonth" class="btn small ghost">&gt;</button>
+                        </div>
+                        <div id="calendarGrid" class="calendar-grid"></div>
+                    </div>
+                </section>
+
+            </section>
+            <footer class="footer">
+                <small>LifeDashboard • Offline • Alone </small>
+            </footer>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
